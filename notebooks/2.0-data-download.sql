@@ -1,5 +1,7 @@
 -- Tutorial
 -- https://github.com/OvertureMaps/data/blob/main/webinar_queries.md
+-- Webinaru
+-- https://youtu.be/NQ7A6gztGfo
 
 -- INSTALL spatial;
 -- INSTALL httpfs;
