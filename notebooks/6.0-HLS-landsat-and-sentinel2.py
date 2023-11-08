@@ -40,7 +40,7 @@ for j in range(len(task_id_list)):
             stream=True
         ) 
 
-        # create a destination directory to store the file in
+        # create a destination directory to store the file in 
         # dest_dir = "C:\\Users\\admin\\Desktop\\GitHub\\riskaudit\\data\\raw\\HLS_landsat" #Landsat
         # dest_dir = "C:\\Users\\admin\\Desktop\\GitHub\\riskaudit\\data\\raw\\HLS_sentinel2" #Sentinel 2a/2b
         filepath = os.path.join(dest_dir, filename)
