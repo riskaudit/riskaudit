@@ -38,7 +38,7 @@ for j in range(len(task_id_list)):
             headers={'Authorization': 'Bearer {0}'.format(token)}, 
             allow_redirects=True,
             stream=True
-        ) 
+        )  
 
         # create a destination directory to store the file in 
         # dest_dir = "C:\\Users\\admin\\Desktop\\GitHub\\riskaudit\\data\\raw\\HLS_landsat" #Landsat
