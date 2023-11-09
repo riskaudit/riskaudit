@@ -10,10 +10,9 @@ Project Organization
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
+    │   ├── obsvariables   <- Observable time-series variables (e.g., satellite imageries).
+    │   ├── groundtruth    <- Census-derived aggregated information on vulnerabiltiy-relevant exposure type.
+    │   └── constraints    <- Benchmarking dataset (e.g., built-up area for a specific year).
     │
     ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
     │
