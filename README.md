@@ -1,5 +1,6 @@
 The Cambridge Disaster Risk Audit Project
 ==============================
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 A working repository for the PhD research project on auditing the global disaster risk to assess whether countries are making progress on the Sendai Framework from the perspective of probabilistic catastrophe models and artificial intelligence
 
