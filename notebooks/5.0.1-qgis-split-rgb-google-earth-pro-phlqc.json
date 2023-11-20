@@ -1,0 +1,198 @@
+[
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2010_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2010_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2010_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2010_ALL_zoom_20_clipped_b.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2011_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2011_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2011_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2011_ALL_zoom_20_clipped_b.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2012_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2012_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2012_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2012_ALL_zoom_20_clipped_b.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2013_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2013_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2013_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2013_ALL_zoom_20_clipped_b.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2014_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2014_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2014_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2014_ALL_zoom_20_clipped_b.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2015_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2015_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2015_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2015_ALL_zoom_20_clipped_b.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2016_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2016_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2016_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2016_ALL_zoom_20_clipped_b.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2017_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2017_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2017_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2017_ALL_zoom_20_clipped_b.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2018_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2018_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2018_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2018_ALL_zoom_20_clipped_b.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2019_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2019_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2019_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2019_ALL_zoom_20_clipped_b.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2020_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2020_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2020_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2020_ALL_zoom_20_clipped_b.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2021_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2021_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2021_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2021_ALL_zoom_20_clipped_b.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2022_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2022_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2022_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2022_ALL_zoom_20_clipped_b.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "input": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2023_ALL_zoom_20_clipped.tif\"",
+      "GRASS_REGION_PARAMETER": "None",
+      "GRASS_REGION_CELLSIZE_PARAMETER": "0",
+      "GRASS_RASTER_FORMAT_OPT": "''",
+      "GRASS_RASTER_FORMAT_META": "''"
+    },
+    "OUTPUTS": {
+      "red": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2023_ALL_zoom_20_clipped_r.tif",
+      "green": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2023_ALL_zoom_20_clipped_g.tif",
+      "blue": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/rgb/PHLQC_2023_ALL_zoom_20_clipped_b.tif"
+    }
+  }
+]

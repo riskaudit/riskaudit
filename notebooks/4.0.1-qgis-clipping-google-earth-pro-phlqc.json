@@ -1,0 +1,380 @@
+[
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2010_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2010_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2011_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2011_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2011_ALL_zoom_20.tif.aux.xml\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2011_ALL_zoom_20.tif.aux_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2012_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2012_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2012_ALL_zoom_20.tif.aux.xml\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2012_ALL_zoom_20.tif.aux_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2013_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2013_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2013_ALL_zoom_20.tif.aux.xml\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2013_ALL_zoom_20.tif.aux_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2014_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2014_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2014_ALL_zoom_20.tif.aux.xml\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2014_ALL_zoom_20.tif.aux_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2015_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2015_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2015_ALL_zoom_20.tif.aux.xml\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2015_ALL_zoom_20.tif.aux_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2016_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2016_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2016_ALL_zoom_20.tif.aux.xml\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2016_ALL_zoom_20.tif.aux_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2017_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2017_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2017_ALL_zoom_20.tif.aux.xml\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2017_ALL_zoom_20.tif.aux_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2018_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2018_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2018_ALL_zoom_20.tif.aux.xml\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2018_ALL_zoom_20.tif.aux_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2019_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2019_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2019_ALL_zoom_20.tif.aux.xml\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2019_ALL_zoom_20.tif.aux_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2020_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2020_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2020_ALL_zoom_20.tif.aux.xml\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2020_ALL_zoom_20.tif.aux_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2021_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2021_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2021_ALL_zoom_20.tif.aux.xml\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2021_ALL_zoom_20.tif.aux_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2022_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2022_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2022_ALL_zoom_20.tif.aux.xml\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2022_ALL_zoom_20.tif.aux_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2023_ALL_zoom_20.tif\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2023_ALL_zoom_20_clipped.tif"
+    }
+  },
+  {
+    "PARAMETERS": {
+      "INPUT": "\"C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/images/PHLQC_2023_ALL_zoom_20.tif.aux.xml\"",
+      "PROJWIN": "'121.053371666,121.067348657,14.704268796,14.723964257 [EPSG:4326]'",
+      "OVERCRS": "False",
+      "NODATA": "None",
+      "OPTIONS": "''",
+      "DATA_TYPE": "0",
+      "EXTRA": "''"
+    },
+    "OUTPUTS": {
+      "OUTPUT": "C:/Users/admin/Desktop/GitHub/riskaudit/data/obsvariables/GOOGLE_EARTH/clipped/PHLQC_2023_ALL_zoom_20.tif.aux_clipped.tif"
+    }
+  }
+]
