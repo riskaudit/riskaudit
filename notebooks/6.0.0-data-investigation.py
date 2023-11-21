@@ -96,3 +96,31 @@ rgb = np.dstack((redn, greenn, bluen))
 plt.imshow(rgb)
 
 # %%
+from rasterio.plot import show_hist
+
+show_hist(raster, bins=50, lw=0.0, stacked=False, alpha=0.3,
+      histtype='stepfilled', title="Histogram")
+# %%
+fig, axhist = plt.subplots(1, 1)
+show_hist(raster, ax=axhist, bins=50, lw=0.0, stacked=False, alpha=0.3,    histtype='stepfilled', density=True, title="Title")
+axhist.get_legend().remove()
+plt.show()
+# %%
+# Let's see how our color composite looks like
+rgb = np.dstack((redn[1500:2000,750:1250], greenn[1500:2000,750:1250], bluen[1500:2000,750:1250]))
+plt.imshow(rgb)
+# %%
+from rasterstats import zonal_stats
+# %%
+np.mean(redn[1500:2000,750:1250])
+# %%
+for j in range(len(files)):
+    fp = os.path.join(data_dir, files[j])
+    raster = rasterio.open(fp)
+    redn = normalize(raster.read(1))
+    greenn = normalize(raster.read(2))
+    bluen = normalize(raster.read(3))
+    rgb = np.dstack((redn[1500:2000,750:1250], greenn[1500:2000,750:1250], bluen[1500:2000,750:1250]))
+    plt.imshow(rgb)
+
+# %%
