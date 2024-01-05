@@ -150,6 +150,14 @@ for i = 1:1 % numel(country_path)
         '[ ur_lot, ur_lat ], ' ...              % upper right
         '[ ul_lot, ul_lat ], ' ...              % upper left
         '[ ll_lot, ll_lat ] ] ] } }]}'];        % lower left
+    ll_lot_list = [];
+    ll_lat_list = [];
+    lr_lot_list = [];
+    lr_lat_list = [];
+    ur_lot_list = [];
+    ur_lat_list = [];
+    ul_lot_list = [];
+    ul_lat_list = [];
     for k = 1:size(ind,1)
         k
 
@@ -162,6 +170,17 @@ for i = 1:1 % numel(country_path)
         ur_lat = locR.LatitudeLimits(2) - (min(row)-1).*locR.CellExtentInLatitude;
         ul_lot = locR.LongitudeLimits(1) + (min(col)-1).*locR.CellExtentInLongitude;
         ul_lat = locR.LatitudeLimits(2) - (min(row)-1).*locR.CellExtentInLatitude;
+        ll_lot_list = [ll_lot_list; ll_lot];
+        ll_lat_list = [ll_lat_list; ll_lat];
+        lr_lot_list = [lr_lot_list; lr_lot];
+        lr_lat_list = [lr_lat_list; lr_lat];
+        ur_lot_list = [ur_lot_list; ur_lot];
+        ur_lat_list = [ur_lat_list; ur_lat];
+        ul_lot_list = [ul_lot_list; ul_lot];
+        ul_lat_list = [ul_lat_list; ul_lat];
+        writetable(table(ll_lot_list, ll_lat_list, lr_lot_list, lr_lat_list, ...
+                         ur_lot_list, ur_lat_list, ul_lot_list, ul_lat_list), ...
+                         path_i+loc_raster_file(1:3)+"_tile_geoextents.csv",'Delimiter',',')
 
         newStr = strrep(template_geojson,'XXX',loc_raster_file(1:3));
         newStr = strrep(newStr,'ll_lot', num2str(ll_lot,'%.15f'));

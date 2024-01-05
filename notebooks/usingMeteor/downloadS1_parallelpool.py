@@ -1,4 +1,5 @@
 # %% Run the following cell to initialize the API. The output will contain instructions on how to grant this notebook access to Earth Engine using your account.
+# https://gorelick.medium.com/fast-er-downloads-a2abd512aa26
 import ee
 import multiprocessing
 ee.Authenticate()
@@ -20,15 +21,37 @@ from retry import retry
 from datetime import datetime
 from datetime import timedelta
 import time
-# from multiprocessing import cpu_count
-# from multiprocessing.pool import ThreadPool
+from multiprocessing import cpu_count
+from multiprocessing.pool import ThreadPool
 %matplotlib inline
 # %% create function to download the image or imagecollection as you desire
+def ymdList(imgcol):
+    def iter_func(image, newlist):
+        date = ee.Number.parse(image.date().format("YYYYMMdd"));
+        newlist = ee.List(newlist);
+        return ee.List(newlist.add(date).sort())
+    ymd = imgcol.iterate(iter_func, ee.List([]))
+    return list(ee.List(ymd).reduce(ee.Reducer.frequencyHistogram()).getInfo().keys())
+# %%
+@retry(tries=10, delay=1, backoff=2)
+def download_url(args):
+    t0 = time.time()
+    url = args[0] # args
+    fn = args[1] # newfile
+    try:
+        r = requests.get(url)
+        with open(fn, 'wb') as f:
+            f.write(r.content)
+        return(url, time.time() - t0)
+    except Exception as e:
+        print('Exception in download_url():', e)
+# %%
+@retry(tries=10, delay=1, backoff=2)
 def downloader(ee_object,region): 
     try:
         #download image
         if isinstance(ee_object, ee.image.Image):
-            print('Its Image')
+            # print('Its Image')
             url = ee_object.getDownloadUrl({
                     'scale': 10,
                     'crs': 'EPSG:4326',
@@ -50,29 +73,12 @@ def downloader(ee_object,region):
             return url
     except:
         print("Could not download")
-def download_url(path, newfile):
-    t0 = time.time()
-    url = path
-    fn = newfile
-    try:
-        r = requests.get(url)
-        with open(fn, 'wb') as f:
-            f.write(r.content)
-        return(url, time.time() - t0)
-    except Exception as e:
-        print('Exception in download_url():', e)
-def ymdList(imgcol):
-    def iter_func(image, newlist):
-        date = ee.Number.parse(image.date().format("YYYYMMdd"));
-        newlist = ee.List(newlist);
-        return ee.List(newlist.add(date).sort())
-    ymd = imgcol.iterate(iter_func, ee.List([]))
-    return list(ee.List(ymd).reduce(ee.Reducer.frequencyHistogram()).getInfo().keys())
-# def download_parallel(args):
-#     cpus = cpu_count()
-#     results = ThreadPool(cpus - 1).imap_unordered(download_url, args)
-#     for result in results:
-#         print('url:', result[0], 'time (s):', result[1])
+# %%
+def download_parallel(args):
+    cpus = cpu_count()
+    results = ThreadPool(cpus - 1).imap_unordered(download_url, args)
+    for result in results:
+        print('url:', result[0], 'time (s):', result[1])
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 t0 = time.time()
 from datetime import datetime
@@ -120,30 +126,15 @@ for icountry in country_list:
         ymd_year = [el[:4] for el in ymdlistvariable]
         indexes = [(x, ymd_year.index(x)) for x in set(ymd_year)]
 
-        # urls = []
-        # fns = []
+        urls = []
+        fns = []
         for i in range(len(indexes)):
             print(i)
             im1 = ee.Image(im_list.get(indexes[i][1])).select('VH').clip(aoi)
             im2 = ee.Image(im_list.get(indexes[i][1])).select('VV').clip(aoi)
-            # urls.append(downloader(im1,region))
-            # urls.append(downloader(im2,region))
-            # fns.append(str(result_path+'/'+ymdlistvariable[indexes[i][1]]+'_'+str(orbitN[0])+"_VH.tif"))
-            # fns.append(str(result_path+'/'+ymdlistvariable[indexes[i][1]]+'_'+str(orbitN[0])+"_VV.tif"))
+            urls.append(downloader(im1,region))
+            urls.append(downloader(im2,region))
+            fns.append(str(result_path+'/'+ymdlistvariable[indexes[i][1]]+'_'+str(orbitN[0])+"_VH.tif"))
+            fns.append(str(result_path+'/'+ymdlistvariable[indexes[i][1]]+'_'+str(orbitN[0])+"_VV.tif"))
 
-            t0 = time.time()
-            result = download_url(
-                downloader(im1,region),
-                str(result_path+'/'+ymdlistvariable[indexes[i][1]]+'_'+str(orbitN[0])+"_VH.tif")
-                )
-            print('url:', result[0], 'time:', result[1])
-
-            t0 = time.time()
-            result = download_url(
-                downloader(im2,region),
-                str(result_path+'/'+ymdlistvariable[indexes[i][1]]+'_'+str(orbitN[0])+"_VV.tif")
-                )
-            print('url:', result[0], 'time:', result[1])
-
-        # download_parallel(zip(urls, fns))     
-# %%
+        download_parallel(zip(urls, fns)) 
