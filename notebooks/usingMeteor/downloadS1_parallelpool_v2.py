@@ -75,6 +75,7 @@ def downloader(ee_object,region):
             return url
     except:
         print("Could not download")
+@retry(tries=10, delay=1, backoff=2)
 def download_parallel(args):
     cpus = cpu_count()
     results = ThreadPool(cpus - 1).imap_unordered(download_url, args)
@@ -92,11 +93,12 @@ country_list = os.listdir(meteor_path); country_list.sort()
 if '.DS_Store' in country_list: country_list.remove('.DS_Store')
 
 # %%
-for icountry in country_list:
-    icountry = country_list[0]
+first_country_list = [0,1,2,3,4,5,8,12,16,17,22,24,25,27,28,29,31,33,34,35,37,38,40,42,43,45,46]
+for ic in range(1,len(first_country_list)): #range(2, 41): # len(country_list)):
+    # icountry = country_list[ic]
+    icountry = country_list[first_country_list[ic]]
 
     geoJSON_path = meteor_path + '/' + icountry + '/tiles/extents'
-
     filenamelist = os.listdir(geoJSON_path); filenamelist.sort()
     if '.DS_Store' in filenamelist: filenamelist.remove('.DS_Store')
     for ifilename in range(len(filenamelist)): # range(custom start index,len(filenamelist)):
@@ -112,9 +114,11 @@ for icountry in country_list:
         coords = geoJSON['features'][0]['geometry']['coordinates']
         aoi = ee.Geometry.Polygon(coords)
         region = aoi.toGeoJSONString()
-        startDATE = ee.Date('2014-06-14')
+
+        # get direction and orbit number
+        startDATE = ee.Date('2015-01-01')
         endDATE = ee.Date('2023-12-31')
-        im_coll = (ee.ImageCollection('COPERNICUS/S1_GRD_FLOAT')
+        im_coll1 = (ee.ImageCollection('COPERNICUS/S1_GRD_FLOAT')
                     .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VH'))
                     .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV'))
                     .filter(ee.Filter.eq('instrumentMode', 'IW'))
@@ -122,26 +126,61 @@ for icountry in country_list:
                     .filterBounds(aoi)
                     .filterDate(startDATE,endDATE)
                     .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING'))
-                    .sort('system:time_start'))    
+                    .sort('system:time_start'))      
+        im_coll2 = (ee.ImageCollection('COPERNICUS/S1_GRD_FLOAT')
+                    .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VH'))
+                    .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VV'))
+                    .filter(ee.Filter.eq('instrumentMode', 'IW'))
+                    .filter(ee.Filter.eq('resolution', 'H'))
+                    .filterBounds(aoi)
+                    .filterDate(startDATE,endDATE)
+                    .filter(ee.Filter.eq('orbitProperties_pass', 'ASCENDING'))
+                    .sort('system:time_start'))  
+        uniq_year1 = list(map(int, list(set([el[:4] for el in ymdList(im_coll1)]))))
+        uniq_year2 = list(map(int, list(set([el[:4] for el in ymdList(im_coll2)]))))
+        if not im_coll1.aggregate_array('relativeOrbitNumber_start').getInfo():
+            im_coll = im_coll2
+        elif len(uniq_year1) > len(uniq_year2):
+            im_coll = im_coll1
+        elif len(uniq_year1) < len(uniq_year2):
+            im_coll = im_coll2
+
         orbitN = im_coll.aggregate_array('relativeOrbitNumber_start').getInfo() 
-        im_coll = im_coll.filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING'))
-        im_list = im_coll.toList(im_coll.size())
-        acq_times = im_coll.aggregate_array('system:time_start').getInfo()
+        im_coll = im_coll.filter(ee.Filter.eq('relativeOrbitNumber_start', orbitN[0]))
+
+        # older
+        # im_list = im_coll.toList(im_coll.size())
+        # acq_times = im_coll.aggregate_array('system:time_start').getInfo()
+        # ymdlistvariable = ymdList(im_coll)
+        # ymd_year = [el[:4] for el in ymdlistvariable]
+        # indexes = [(x, ymd_year.index(x)) for x in set(ymd_year)]
+
         ymdlistvariable = ymdList(im_coll)
         ymd_year = [el[:4] for el in ymdlistvariable]
-        indexes = [(x, ymd_year.index(x)) for x in set(ymd_year)]
+        uniq_year = list(map(int, list(set(ymd_year))))
+        uniq_year.sort()
 
         ims = []
         fns = []
         rgns = []
-        for i in range(len(indexes)):
-            print(i)
-            im1 = ee.Image(im_list.get(indexes[i][1])).select('VH').clip(aoi)
-            im2 = ee.Image(im_list.get(indexes[i][1])).select('VV').clip(aoi)
+        # for i in range(len(indexes)):
+        #     im1 = ee.Image(im_list.get(indexes[i][1])).select('VH').clip(aoi)
+        #     im2 = ee.Image(im_list.get(indexes[i][1])).select('VV').clip(aoi)
+        #     ims.append(im1)
+        #     ims.append(im2)
+        #     fns.append(str(result_path+'/'+ymdlistvariable[indexes[i][1]]+'_'+str(orbitN[0])+"_VH.tif"))
+        #     fns.append(str(result_path+'/'+ymdlistvariable[indexes[i][1]]+'_'+str(orbitN[0])+"_VV.tif"))
+        #     rgns.append(region)
+        #     rgns.append(region)
+        for i in range(len(uniq_year)):
+            startDATE = ee.Date(str(uniq_year[i]) + '-01-01')
+            endDATE = ee.Date(str(uniq_year[i]) + '-12-31')
+            im1 = im_coll.filterDate(startDATE,endDATE).select('VH').mean().clip(aoi)
+            im2 = im_coll.filterDate(startDATE,endDATE).select('VV').mean().clip(aoi)
             ims.append(im1)
             ims.append(im2)
-            fns.append(str(result_path+'/'+ymdlistvariable[indexes[i][1]]+'_'+str(orbitN[0])+"_VH.tif"))
-            fns.append(str(result_path+'/'+ymdlistvariable[indexes[i][1]]+'_'+str(orbitN[0])+"_VV.tif"))
+            fns.append(str(result_path+'/'+str(uniq_year[i])+'_'+str(orbitN[0])+"_VH.tif"))
+            fns.append(str(result_path+'/'+str(uniq_year[i])+'_'+str(orbitN[0])+"_VV.tif"))
             rgns.append(region)
             rgns.append(region)
 
