@@ -88,10 +88,10 @@ country_list = os.listdir(meteor_path); country_list.sort()
 if '.DS_Store' in country_list: country_list.remove('.DS_Store')
 
 # %%
-
+custom_list = [7,9]
 for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
     # icountry = country_list[ic]
-    icountry = country_list[ic]
+    icountry = country_list[custom_list[ic]]
 
     geoJSON_path = meteor_path + '/' + icountry + '/tiles/extents'
     filenamelist = os.listdir(geoJSON_path); filenamelist.sort()
@@ -198,3 +198,4 @@ for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
                 rgns.append(region)
 
         download_parallel(zip(ims, fns, rgns))
+# %%
