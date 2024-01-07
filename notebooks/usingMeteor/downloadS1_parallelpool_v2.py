@@ -2,10 +2,7 @@
 # https://gorelick.medium.com/fast-er-downloads-a2abd512aa26
 import ee
 import multiprocessing
-# ee.Authenticate()
-# ee.Initialize()
 ee.Initialize(opt_url='https://earthengine-highvolume.googleapis.com')
-# %%
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import norm, gamma, f, chi2
@@ -24,7 +21,6 @@ import time
 from multiprocessing import cpu_count
 from multiprocessing.pool import ThreadPool
 %matplotlib inline
-# %% create function to download the image or imagecollection as you desire
 def ymdList(imgcol):
     def iter_func(image, newlist):
         date = ee.Number.parse(image.date().format("YYYYMMdd"));
@@ -81,7 +77,6 @@ def download_parallel(args):
     results = ThreadPool(cpus - 1).imap_unordered(download_url, args)
     for result in results:
         print('url:', result[0], 'time (s):', result[1])
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 t0 = time.time()
 from datetime import datetime
 from time import mktime
@@ -93,10 +88,10 @@ country_list = os.listdir(meteor_path); country_list.sort()
 if '.DS_Store' in country_list: country_list.remove('.DS_Store')
 
 # %%
-first_country_list = [0,1,2,3,4,5,8,12,16,17,22,24,25,27,28,29,31,33,34,35,37,38,40,42,43,45,46]
-for ic in range(1,len(first_country_list)): #range(2, 41): # len(country_list)):
+
+for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
     # icountry = country_list[ic]
-    icountry = country_list[first_country_list[ic]]
+    icountry = country_list[ic]
 
     geoJSON_path = meteor_path + '/' + icountry + '/tiles/extents'
     filenamelist = os.listdir(geoJSON_path); filenamelist.sort()
@@ -138,22 +133,21 @@ for ic in range(1,len(first_country_list)): #range(2, 41): # len(country_list)):
                     .sort('system:time_start'))  
         uniq_year1 = list(map(int, list(set([el[:4] for el in ymdList(im_coll1)]))))
         uniq_year2 = list(map(int, list(set([el[:4] for el in ymdList(im_coll2)]))))
+        year_from_1 = []
+        year_from_2 = []
         if not im_coll1.aggregate_array('relativeOrbitNumber_start').getInfo():
             im_coll = im_coll2
-        elif len(uniq_year1) > len(uniq_year2):
+        elif len(uniq_year1) >= len(uniq_year2):
             im_coll = im_coll1
+            if len(list(set(uniq_year2).difference(uniq_year1))) > 0:
+                year_from_2 = list(set(uniq_year2).difference(uniq_year1))
         elif len(uniq_year1) < len(uniq_year2):
             im_coll = im_coll2
+            if len(list(set(uniq_year1).difference(uniq_year2))) > 0:
+                year_from_1 = list(set(uniq_year1).difference(uniq_year2))
 
         orbitN = im_coll.aggregate_array('relativeOrbitNumber_start').getInfo() 
         im_coll = im_coll.filter(ee.Filter.eq('relativeOrbitNumber_start', orbitN[0]))
-
-        # older
-        # im_list = im_coll.toList(im_coll.size())
-        # acq_times = im_coll.aggregate_array('system:time_start').getInfo()
-        # ymdlistvariable = ymdList(im_coll)
-        # ymd_year = [el[:4] for el in ymdlistvariable]
-        # indexes = [(x, ymd_year.index(x)) for x in set(ymd_year)]
 
         ymdlistvariable = ymdList(im_coll)
         ymd_year = [el[:4] for el in ymdlistvariable]
@@ -163,15 +157,6 @@ for ic in range(1,len(first_country_list)): #range(2, 41): # len(country_list)):
         ims = []
         fns = []
         rgns = []
-        # for i in range(len(indexes)):
-        #     im1 = ee.Image(im_list.get(indexes[i][1])).select('VH').clip(aoi)
-        #     im2 = ee.Image(im_list.get(indexes[i][1])).select('VV').clip(aoi)
-        #     ims.append(im1)
-        #     ims.append(im2)
-        #     fns.append(str(result_path+'/'+ymdlistvariable[indexes[i][1]]+'_'+str(orbitN[0])+"_VH.tif"))
-        #     fns.append(str(result_path+'/'+ymdlistvariable[indexes[i][1]]+'_'+str(orbitN[0])+"_VV.tif"))
-        #     rgns.append(region)
-        #     rgns.append(region)
         for i in range(len(uniq_year)):
             startDATE = ee.Date(str(uniq_year[i]) + '-01-01')
             endDATE = ee.Date(str(uniq_year[i]) + '-12-31')
@@ -183,5 +168,33 @@ for ic in range(1,len(first_country_list)): #range(2, 41): # len(country_list)):
             fns.append(str(result_path+'/'+str(uniq_year[i])+'_'+str(orbitN[0])+"_VV.tif"))
             rgns.append(region)
             rgns.append(region)
+
+        if len(year_from_2) > 0:
+            for i in range(len(year_from_2)):
+                startDATE = ee.Date(str(year_from_2[i]) + '-01-01')
+                endDATE = ee.Date(str(year_from_2[i]) + '-12-31')
+                im1 = im_coll2.filterDate(startDATE,endDATE).select('VH').mean().clip(aoi)
+                im2 = im_coll2.filterDate(startDATE,endDATE).select('VV').mean().clip(aoi)
+                ims.append(im1)
+                ims.append(im2)
+                orbitN = im_coll2.aggregate_array('relativeOrbitNumber_start').getInfo() 
+                fns.append(str(result_path+'/'+str(year_from_2[i])+'_'+str(orbitN[0])+"_VH.tif"))
+                fns.append(str(result_path+'/'+str(year_from_2[i])+'_'+str(orbitN[0])+"_VV.tif"))
+                rgns.append(region)
+                rgns.append(region)
+
+        if len(year_from_1) > 0:
+            for i in range(len(year_from_1)):
+                startDATE = ee.Date(str(year_from_1[i]) + '-01-01')
+                endDATE = ee.Date(str(year_from_1[i]) + '-12-31')
+                im1 = im_coll1.filterDate(startDATE,endDATE).select('VH').mean().clip(aoi)
+                im2 = im_coll1.filterDate(startDATE,endDATE).select('VV').mean().clip(aoi)
+                ims.append(im1)
+                ims.append(im2)
+                orbitN = im_coll1.aggregate_array('relativeOrbitNumber_start').getInfo() 
+                fns.append(str(result_path+'/'+str(year_from_1[i])+'_'+str(orbitN[0])+"_VH.tif"))
+                fns.append(str(result_path+'/'+str(year_from_1[i])+'_'+str(orbitN[0])+"_VV.tif"))
+                rgns.append(region)
+                rgns.append(region)
 
         download_parallel(zip(ims, fns, rgns))
