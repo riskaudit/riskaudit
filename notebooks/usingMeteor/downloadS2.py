@@ -91,9 +91,6 @@ if '.DS_Store' in country_list: country_list.remove('.DS_Store')
 for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
     # icountry = country_list[ic]
     # icountry = country_list[custom_list[ic]
-    ims = []
-    fns = []
-    rgns = []
 
     icountry = country_list[ic]
     geoJSON_path = meteor_path + '/' + icountry + '/tiles/extents'
@@ -125,6 +122,10 @@ for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
         ymd_year = [el[:4] for el in ymdlistvariable]
         uniq_year = list(map(int, list(set(ymd_year))))
         uniq_year.sort()
+
+        ims = []
+        fns = []
+        rgns = []
 
         for i in range(len(uniq_year)):
             startDATE = ee.Date(str(uniq_year[i]) + '-01-01')
@@ -165,5 +166,6 @@ for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
             rgns.append(region)
             rgns.append(region)
             rgns.append(region)
-    download_parallel(zip(ims, fns, rgns))
+        
+        download_parallel(zip(ims, fns, rgns))
 # %%
