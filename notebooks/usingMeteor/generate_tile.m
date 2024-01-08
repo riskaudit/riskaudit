@@ -12,8 +12,8 @@ ntiles_per_country = 100; %random sampling - not practical to use all of the map
 seed = 1; %reproducibility
 
 % select country 'i'
-% for i = 1:numel(country_path)
 for i = 1:numel(country_path)
+% for i = 1:numel(custom_list) %numel(country_path)
     tic
     disp(country_path(i))
 
@@ -139,7 +139,6 @@ for i = 1:numel(country_path)
         n_selected = [];
         k_selected = [];
         for w = 1:10
-            w
             idx = find(round((nzeros_ratio*(1/prop)*10+prop))==w);
             n_selected = [n_selected; numel(idx)];
         end
@@ -260,7 +259,7 @@ for i = 1:numel(country_path)
             end
             ind = ind(selected_rows,:);
         end
-        
+
     end
 
 
