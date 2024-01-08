@@ -28,7 +28,7 @@ def ymdList(imgcol):
         return ee.List(newlist.add(date).sort())
     ymd = imgcol.iterate(iter_func, ee.List([]))
     return list(ee.List(ymd).reduce(ee.Reducer.frequencyHistogram()).getInfo().keys())
-@retry(tries=10, delay=1, backoff=2)
+@retry(tries=10, delay=5, backoff=2)
 def download_url(args):
 
 
@@ -44,7 +44,7 @@ def download_url(args):
         return(url, time.time() - t0)
     except Exception as e:
         print('Exception in download_url():', e)
-@retry(tries=10, delay=1, backoff=2)
+@retry(tries=10, delay=5, backoff=2)
 def downloader(ee_object,region): 
     try:
         #download image
@@ -71,7 +71,7 @@ def downloader(ee_object,region):
             return url
     except:
         print("Could not download")
-@retry(tries=10, delay=1, backoff=2)
+@retry(tries=10, delay=5, backoff=2)
 def download_parallel(args):
     cpus = cpu_count()
     results = ThreadPool(cpus - 1).imap_unordered(download_url, args)
@@ -88,15 +88,13 @@ country_list = os.listdir(meteor_path); country_list.sort()
 if '.DS_Store' in country_list: country_list.remove('.DS_Store')
 
 # %%
-# custom_list = [13,14,15,18]
-custom_list = [37,38,39,40,41,44,45]
 for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
     # icountry = country_list[ic]
     # icountry = country_list[custom_list[ic]]
     ims = []
     fns = []
     rgns = []
-    icountry = country_list[custom_list[ic]]
+    icountry = country_list[ic]
     geoJSON_path = meteor_path + '/' + icountry + '/tiles/extents'
     filenamelist = os.listdir(geoJSON_path); filenamelist.sort()
     if '.DS_Store' in filenamelist: filenamelist.remove('.DS_Store')
@@ -202,4 +200,3 @@ for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
                 rgns.append(region)
 
     download_parallel(zip(ims, fns, rgns))
-# %%
