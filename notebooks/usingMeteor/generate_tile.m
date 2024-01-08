@@ -11,16 +11,14 @@ tile_edge = 8; % tile_edge = 8 is approx. 4km by 4km area
 ntiles_per_country = 100; %random sampling - not practical to use all of the map (size issues) - must be multiples of 10
 seed = 1; %reproducibility
 
-initial_lack_list = [11,12,14,15,16,19,20,21,22,24,27,...
-                     32,33,34,35,36,37,38,39,40,41,42,45,46];
 % select country 'i'
 % for i = 1:numel(country_path)
-for i = 1:numel(initial_lack_list)
+for i = 1:numel(country_path)
     tic
-    disp(country_path(initial_lack_list(i)))
+    disp(country_path(i))
 
     % set master path for the selected country
-    path_i = path_meteor_groundtruth + country_path(initial_lack_list(i)) + "/";
+    path_i = path_meteor_groundtruth + country_path(i) + "/";
     
     % load raster grid of location IDs
     loc_raster_file = dir(fullfile(path_i, '*rectangles_rasterized.tif')).name;
@@ -55,6 +53,13 @@ for i = 1:numel(initial_lack_list)
     countryMask_file = dir(fullfile(path_i, '*_country.tif')).name;
     countryMask_path = path_i + string(countryMask_file);
     [countryMask,~] = readgeoraster(countryMask_path);
+    valid_col = find(sum(countryMask,1)~=0)';
+    valid_row = find(sum(countryMask,2)~=0);
+    valid_cole = 1:(size(loc,2)-tile_edge+1);
+    valid_rowe = 1:(size(loc,1)-tile_edge+1);
+    valid_colF = valid_cole(ismember(valid_cole,valid_col))';
+    valid_rowF = valid_rowe(ismember(valid_rowe,valid_row))';
+    
 
     % determine number of tiles and its geographic extent (having balanced
     % representation of all labels) - greedy dynamic search
@@ -64,79 +69,82 @@ for i = 1:numel(initial_lack_list)
     prop = 0.5; % proportion of zeros
     cover = 1;
     overlap_ratio = 0;
-    for col = 1:(size(loc,2)-tile_edge+1)
-        for row = 1:(size(loc,1)-tile_edge+1)
-            
-            % cropped to selection
-            tile = map_nlabel(row:(row+tile_edge-1),col:(col+tile_edge-1),:);
-
-            % linear indices
-            ind_rc = sub2ind(size(loc),...
-                   repmat(row:(row+tile_edge-1),[1 tile_edge]),...
-                   repelem(col:(col+tile_edge-1),tile_edge));
-            
-            % N - number of classes present (integer)
-            N = numel(unique(reshape(sum(tile,3),1,[])'));
-
-            % nzeros - number of zeros or unlabeled segments
-            nzeros_temp = sum(reshape(sum(tile,3),1,[])' == 0);
-            
-            % multi-class criterion
-            attr_temp = reshape(sum(sum(tile,1),2),1,[]);
-
-            if N > 1 && ... % ensures 2 or more classes
-               sum(ismember(ind_rc(:),ind(:))) == overlap_ratio*(tile_edge^2) && ... % ensures no overlapping of tiles
-               sum(sum(countryMask(row:(row+tile_edge-1),col:(col+tile_edge-1))>0)) == cover*(tile_edge^2) && ... % ensures within country borders
-               nzeros_temp < prop*(tile_edge^2) % ensures (1) computational efficiency & 
-                % (2) we would like to train our machine learning model to 
-                % learn the pattern half from those with labels and half 
-                % from unlabeled segments. We do not need those with, 
-                % let's say, 75% or 90% unlabeled segments, because the 
-                % future steps will need to incorporate the prior belief 
-                % from meteor maps that those areas have no labels unless 
-                % significant patterns start to show from auxialliary 
-                % datasets like Landsat or Sentinel
-                ind = [ind; ind_rc];
-                attr = [attr; attr_temp];
-                nzeros_ratio = [nzeros_ratio; nzeros_temp/(tile_edge^2)];
+    tic
+    for icol = 1:numel(valid_colF)
+        icol*100/numel(valid_colF)
+        col = valid_colF(icol);
+        for irow = 1:numel(valid_rowF)
+            row = valid_rowF(irow);
+            if sum(sum(countryMask(row:(row+tile_edge-1),col:(col+tile_edge-1))>0)) ~= 0
+                % cropped to selection
+                tile = map_nlabel(row:(row+tile_edge-1),col:(col+tile_edge-1),:);
+                % linear indices
+                ind_rc = sub2ind(size(loc),...
+                       repmat(row:(row+tile_edge-1),[1 tile_edge]),...
+                       repelem(col:(col+tile_edge-1),tile_edge));
+                % N - number of classes present (integer)
+                N = numel(unique(reshape(sum(tile,3),1,[])'));
+                % nzeros - number of zeros or unlabeled segments
+                nzeros_temp = sum(reshape(sum(tile,3),1,[])' == 0);
+                % multi-class criterion
+                attr_temp = reshape(sum(sum(tile,1),2),1,[]);
+                if N > 1 && ... % ensures 2 or more classes
+                   sum(ismember(ind_rc(:),ind(:))) == overlap_ratio*(tile_edge^2) && ... % ensures no overlapping of tiles
+                   sum(sum(countryMask(row:(row+tile_edge-1),col:(col+tile_edge-1))>0)) == cover*(tile_edge^2) && ... % ensures within country borders
+                   nzeros_temp < prop*(tile_edge^2) % ensures (1) computational efficiency & 
+                    % (2) we would like to train our machine learning model to 
+                    % learn the pattern half from those with labels and half 
+                    % from unlabeled segments. We do not need those with, 
+                    % let's say, 75% or 90% unlabeled segments, because the 
+                    % future steps will need to incorporate the prior belief 
+                    % from meteor maps that those areas have no labels unless 
+                    % significant patterns start to show from auxialliary 
+                    % datasets like Landsat or Sentinel
+                    ind = [ind; ind_rc];
+                    attr = [attr; attr_temp];
+                    nzeros_ratio = [nzeros_ratio; nzeros_temp/(tile_edge^2)];
+                end
             end
 
         end
     end
+    toc
 
     
     % 'importance sampling'
-    importance_weight = 0.*attr;
-    for y = 1:numel(bldgtype)
-        inter_x = histogram(attr(:,y),[0 1:1:tile_edge]*tile_edge,'Normalization','pdf').BinEdges;
-        inter_pdf = histogram(attr(:,y),[0 1:1:tile_edge]*tile_edge,'Normalization','pdf').Values;
-        for z = 1:size(attr,1)
-            if attr(z,y) == 0
-                importance_weight(z,y) = inter_pdf(1);
-            else
-                importance_weight(z,y) = inter_pdf(find((attr(z,y) <= inter_x)==1,1,'first')-1);
+    if size(ind,1) ~= 0
+        importance_weight = 0.*attr;
+        for y = 1:numel(bldgtype)
+            inter_x = histogram(attr(:,y),[0 1:1:tile_edge]*tile_edge,'Normalization','pdf').BinEdges;
+            inter_pdf = histogram(attr(:,y),[0 1:1:tile_edge]*tile_edge,'Normalization','pdf').Values;
+            for z = 1:size(attr,1)
+                if attr(z,y) == 0
+                    importance_weight(z,y) = inter_pdf(1);
+                else
+                    importance_weight(z,y) = inter_pdf(find((attr(z,y) <= inter_x)==1,1,'first')-1);
+                end
             end
+        end
+        % convert into single weight (assuming independence)
+        importance_weight_single = ones(size(attr,1),1);
+        for y = 1:numel(bldgtype)
+            importance_weight_single = importance_weight_single.*importance_weight(:,y);
+        end
+        % select the tiles to have balanced representation - our criteria is
+        % the number of zeros (no labels) in a given tile. Fewer zeros mean
+        % that those tiles are from highly condensed areas whereas tiles with
+        % many zeros are from areas that could possible be remote or small
+        % communities.
+        selected_rows = [];
+        n_selected = [];
+        k_selected = [];
+        for w = 1:10
+            w
+            idx = find(round((nzeros_ratio*(1/prop)*10+prop))==w);
+            n_selected = [n_selected; numel(idx)];
         end
     end
 
-    % convert into single weight (assuming independence)
-    importance_weight_single = ones(size(attr,1),1);
-    for y = 1:numel(bldgtype)
-        importance_weight_single = importance_weight_single.*importance_weight(:,y);
-    end
-
-    % select the tiles to have balanced representation - our criteria is
-    % the number of zeros (no labels) in a given tile. Fewer zeros mean
-    % that those tiles are from highly condensed areas whereas tiles with
-    % many zeros are from areas that could possible be remote or small
-    % communities.
-    selected_rows = [];
-    n_selected = [];
-    k_selected = [];
-    for w = 1:10
-        idx = find(round((nzeros_ratio*(1/prop)*10+prop))==w);
-        n_selected = [n_selected; numel(idx)];
-    end
     % second fix - number of extracted tiles is enough but selected rows
     % are just limiting
     if sum(n_selected.*(n_selected<=10)) < ntiles_per_country && size(ind,1) > ntiles_per_country
@@ -166,31 +174,42 @@ for i = 1:numel(initial_lack_list)
     elseif size(ind,1) < ntiles_per_country
         % third fix - number of extracted files is not enough ()
         while size(ind,1) < ntiles_per_country && cover >= 0.0001
+            tic
             prop = 0.5;
             while size(ind,1) < ntiles_per_country && prop < 1
-                for col = 1:(size(loc,2)-tile_edge+1)
-                    for row = 1:(size(loc,1)-tile_edge+1)
-                        tile = map_nlabel(row:(row+tile_edge-1),col:(col+tile_edge-1),:);
-                        ind_rc = sub2ind(size(loc),...
-                               repmat(row:(row+tile_edge-1),[1 tile_edge]),...
-                               repelem(col:(col+tile_edge-1),tile_edge));
-                        N = numel(unique(reshape(sum(tile,3),1,[])'));
-                        nzeros_temp = sum(reshape(sum(tile,3),1,[])' == 0);
-                        attr_temp = reshape(sum(sum(tile,1),2),1,[]);
-                        if N > 1 && ... % ensures 2 or more classes
-                           sum(ismember(ind_rc(:),ind(:))) == overlap_ratio*(tile_edge^2) && ... % ensures no overlapping of tiles
-                           sum(sum(countryMask(row:(row+tile_edge-1),col:(col+tile_edge-1))>0)) >= cover*(tile_edge^2) && ... % ensures within country borders
-                           nzeros_temp < prop*(tile_edge^2)
-                            ind = [ind; ind_rc];
-                            attr = [attr; attr_temp];
-                            nzeros_ratio = [nzeros_ratio; nzeros_temp/(tile_edge^2)];
+                for icol = 1:numel(valid_colF)
+                    icol*100/numel(valid_colF)
+                    col = valid_colF(icol);
+                    for irow = 1:numel(valid_rowF)
+                        row = valid_rowF(irow);
+                        if sum(sum(countryMask(row:(row+tile_edge-1),col:(col+tile_edge-1))>0)) ~= 0
+                            tile = map_nlabel(row:(row+tile_edge-1),col:(col+tile_edge-1),:);
+                            ind_rc = sub2ind(size(loc),...
+                                   repmat(row:(row+tile_edge-1),[1 tile_edge]),...
+                                   repelem(col:(col+tile_edge-1),tile_edge));
+                            N = numel(unique(reshape(sum(tile,3),1,[])'));
+                            nzeros_temp = sum(reshape(sum(tile,3),1,[])' == 0);
+                            attr_temp = reshape(sum(sum(tile,1),2),1,[]);
+    
+                            if N > 1 && ... % ensures 2 or more classes
+                               sum(ismember(ind_rc(:),ind(:))) == overlap_ratio*(tile_edge^2) && ... % ensures no overlapping of tiles
+                               sum(sum(countryMask(row:(row+tile_edge-1),col:(col+tile_edge-1))>0)) >= cover*(tile_edge^2) && ... % ensures within country borders
+                               nzeros_temp < prop*(tile_edge^2)
+    
+                                ind = [ind; ind_rc];
+                                attr = [attr; attr_temp];
+                                nzeros_ratio = [nzeros_ratio; nzeros_temp/(tile_edge^2)];
+                            end
                         end
                     end
                 end
                 prop = prop + 0.02; % proportion of zeros
             end
-            cover = cover - 0.05;
+            cover = cover - 0.05
+            toc
         end
+
+
         importance_weight = 0.*attr;
         for y = 1:numel(bldgtype)
             inter_x = histogram(attr(:,y),[0 1:1:tile_edge]*tile_edge,'Normalization','pdf').BinEdges;
@@ -212,7 +231,8 @@ for i = 1:numel(initial_lack_list)
         n_selected = [];
         k_selected = [];
         for w = 1:10
-            idx = find(ceil(nzeros_ratio*10)==w);
+            % find(round((nzeros_ratio*(1/prop)*10+prop))==w);
+            idx = find(ceil((nzeros_ratio+0.001)*10)==w);
             n_selected = [n_selected; numel(idx)];
         end
         if sum(n_selected.*(n_selected<=10)) < ntiles_per_country
@@ -234,12 +254,13 @@ for i = 1:numel(initial_lack_list)
                n_selected(end) = n_selected(end) - (sum(n_selected)-ntiles_per_country);
             end
             for w = 1:10
-                idx = find(ceil(nzeros_ratio*10)==w);
+                idx = find(ceil((nzeros_ratio+0.001)*10)==w);
                 [~,I] = maxk(importance_weight_single(idx),n_selected(w));
                 selected_rows = [selected_rows; idx(I)];
             end
             ind = ind(selected_rows,:);
         end
+        
     end
 
 
