@@ -89,10 +89,13 @@ if '.DS_Store' in country_list: country_list.remove('.DS_Store')
 
 # %%
 # custom_list = [13,14,15,18]
-custom_list = [32,33,34,35,36,38,39,40,44,45]
+custom_list = [37,38,39,40,41,44,45]
 for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
     # icountry = country_list[ic]
     # icountry = country_list[custom_list[ic]]
+    ims = []
+    fns = []
+    rgns = []
     icountry = country_list[custom_list[ic]]
     geoJSON_path = meteor_path + '/' + icountry + '/tiles/extents'
     filenamelist = os.listdir(geoJSON_path); filenamelist.sort()
@@ -155,9 +158,9 @@ for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
         uniq_year = list(map(int, list(set(ymd_year))))
         uniq_year.sort()
 
-        ims = []
-        fns = []
-        rgns = []
+        # ims = []
+        # fns = []
+        # rgns = []
         for i in range(len(uniq_year)):
             startDATE = ee.Date(str(uniq_year[i]) + '-01-01')
             endDATE = ee.Date(str(uniq_year[i]) + '-12-31')
@@ -198,5 +201,5 @@ for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
                 rgns.append(region)
                 rgns.append(region)
 
-        download_parallel(zip(ims, fns, rgns))
+    download_parallel(zip(ims, fns, rgns))
 # %%
