@@ -20,7 +20,6 @@ from datetime import timedelta
 import time
 from multiprocessing import cpu_count
 from multiprocessing.pool import ThreadPool
-%matplotlib inline
 def ymdList(imgcol):
     def iter_func(image, newlist):
         date = ee.Number.parse(image.date().format("YYYYMMdd"));

@@ -84,14 +84,15 @@ meteor_path =  '/Users/joshuadimasaka/Desktop/PhD/GitHub/riskaudit/data/groundtr
 output_path = '/Users/joshuadimasaka/Desktop/PhD/GitHub/riskaudit/data/obsvariables/METEOR_PROJECT_2002/SENTINEL-2-MSI_LVL2A'
 country_list = os.listdir(meteor_path); country_list.sort()
 if '.DS_Store' in country_list: country_list.remove('.DS_Store')
-for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
+custom_list = [24,25]
+for ic in range(len(custom_list)): #range(2, 41): # len(country_list)):
     # icountry = country_list[ic]
     # icountry = country_list[custom_list[ic]
     ims1 = []
     fns1 = []
     rgns1 = []
 
-    icountry = country_list[ic]
+    icountry = country_list[custom_list[ic]]
     geoJSON_path = meteor_path + '/' + icountry + '/tiles/extents'
     filenamelist = os.listdir(geoJSON_path); filenamelist.sort()
     if '.DS_Store' in filenamelist: filenamelist.remove('.DS_Store')

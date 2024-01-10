@@ -85,14 +85,11 @@ output_path = '/Users/joshuadimasaka/Desktop/PhD/GitHub/riskaudit/data/obsvariab
 
 country_list = os.listdir(meteor_path); country_list.sort()
 if '.DS_Store' in country_list: country_list.remove('.DS_Store')
-for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
-    # icountry = country_list[ic]
-    # icountry = country_list[custom_list[ic]
+for ic in range(len(custom_list)): #range(2, 41): # len(country_list)):
+    icountry = country_list[ic]
     ims1 = []
     fns1 = []
     rgns1 = []
-
-    icountry = country_list[ic]
     geoJSON_path = meteor_path + '/' + icountry + '/tiles/extents'
     filenamelist = os.listdir(geoJSON_path); filenamelist.sort()
     if '.DS_Store' in filenamelist: filenamelist.remove('.DS_Store')
