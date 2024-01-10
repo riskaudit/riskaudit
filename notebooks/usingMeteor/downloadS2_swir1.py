@@ -85,7 +85,7 @@ output_path = '/Users/joshuadimasaka/Desktop/PhD/GitHub/riskaudit/data/obsvariab
 
 country_list = os.listdir(meteor_path); country_list.sort()
 if '.DS_Store' in country_list: country_list.remove('.DS_Store')
-for ic in range(43,len(country_list)): #range(2, 41): # len(country_list)):
+for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
     # icountry = country_list[ic]
     # icountry = country_list[custom_list[ic]
     ims1 = []
@@ -122,14 +122,13 @@ for ic in range(43,len(country_list)): #range(2, 41): # len(country_list)):
         ymd_year = [el[:4] for el in ymdlistvariable]
         uniq_year = list(map(int, list(set(ymd_year))))
         uniq_year.sort()
-
+        
         for i in range(len(uniq_year)):
             startDATE = ee.Date(str(uniq_year[i]) + '-01-01')
             endDATE = ee.Date(str(uniq_year[i]) + '-12-31')
-
-            if not os.path.isfile(str(result_path+'/'+str(uniq_year[i])+"_B2_blue.tif")):
-                ims1.append(im_coll.filterDate(startDATE,endDATE).select('B2').mean().clip(aoi))
-                fns1.append(str(result_path+'/'+str(uniq_year[i])+"_B2_blue.tif"))
+            if not os.path.isfile(str(result_path+'/'+str(uniq_year[i])+"_B11_swir1.tif")):
+                ims1.append(im_coll.filterDate(startDATE,endDATE).select('B11').mean().clip(aoi))
+                fns1.append(str(result_path+'/'+str(uniq_year[i])+"_B11_swir1.tif"))
                 rgns1.append(region)
     
     if len(ims1) != 0:

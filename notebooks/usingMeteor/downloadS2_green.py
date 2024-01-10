@@ -85,9 +85,7 @@ output_path = '/Users/joshuadimasaka/Desktop/PhD/GitHub/riskaudit/data/obsvariab
 
 country_list = os.listdir(meteor_path); country_list.sort()
 if '.DS_Store' in country_list: country_list.remove('.DS_Store')
-for ic in range(43,len(country_list)): #range(2, 41): # len(country_list)):
-    # icountry = country_list[ic]
-    # icountry = country_list[custom_list[ic]
+for ic in range(len(country_list)): 
     ims1 = []
     fns1 = []
     rgns1 = []
@@ -96,8 +94,7 @@ for ic in range(43,len(country_list)): #range(2, 41): # len(country_list)):
     geoJSON_path = meteor_path + '/' + icountry + '/tiles/extents'
     filenamelist = os.listdir(geoJSON_path); filenamelist.sort()
     if '.DS_Store' in filenamelist: filenamelist.remove('.DS_Store')
-    for ifilename in range(len(filenamelist)): # range(custom start index,len(filenamelist)):
-        # filename = filenamelist[0]
+    for ifilename in range(len(filenamelist)): 
         filename = filenamelist[ifilename]
         result_path = output_path+'/'+icountry+'/'+filename[:-9]
         if not os.path.exists(result_path):
@@ -126,10 +123,9 @@ for ic in range(43,len(country_list)): #range(2, 41): # len(country_list)):
         for i in range(len(uniq_year)):
             startDATE = ee.Date(str(uniq_year[i]) + '-01-01')
             endDATE = ee.Date(str(uniq_year[i]) + '-12-31')
-
-            if not os.path.isfile(str(result_path+'/'+str(uniq_year[i])+"_B2_blue.tif")):
-                ims1.append(im_coll.filterDate(startDATE,endDATE).select('B2').mean().clip(aoi))
-                fns1.append(str(result_path+'/'+str(uniq_year[i])+"_B2_blue.tif"))
+            if not os.path.isfile(str(result_path+'/'+str(uniq_year[i])+"_B3_green.tif")):
+                ims1.append(im_coll.filterDate(startDATE,endDATE).select('B3').mean().clip(aoi))            
+                fns1.append(str(result_path+'/'+str(uniq_year[i])+"_B3_green.tif"))
                 rgns1.append(region)
     
     if len(ims1) != 0:
