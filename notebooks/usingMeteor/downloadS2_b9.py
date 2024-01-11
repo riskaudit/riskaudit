@@ -84,7 +84,8 @@ output_path = '/Users/joshuadimasaka/Desktop/PhD/GitHub/riskaudit/data/obsvariab
 
 country_list = os.listdir(meteor_path); country_list.sort()
 if '.DS_Store' in country_list: country_list.remove('.DS_Store')
-for ic in range(len(country_list)): 
+for ic in range(23,len(country_list)): 
+    print(ic)
     ims1 = []
     fns1 = []
     rgns1 = []
