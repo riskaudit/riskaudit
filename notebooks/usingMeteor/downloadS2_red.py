@@ -85,7 +85,7 @@ output_path = '/Users/joshuadimasaka/Desktop/PhD/GitHub/riskaudit/data/obsvariab
 
 country_list = os.listdir(meteor_path); country_list.sort()
 if '.DS_Store' in country_list: country_list.remove('.DS_Store')
-for ic in range(43,len(country_list)): #range(2, 41): # len(country_list)):
+for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
     # icountry = country_list[ic]
     # icountry = country_list[custom_list[ic]
     ims1 = []
@@ -127,7 +127,7 @@ for ic in range(43,len(country_list)): #range(2, 41): # len(country_list)):
         for i in range(len(uniq_year)):
             startDATE = ee.Date(str(uniq_year[i]) + '-01-01')
             endDATE = ee.Date(str(uniq_year[i]) + '-12-31')
-            if not os.path.isfile(str(result_path+'/'+str(uniq_year[i])+"_B4_red.tif")):
+            if not os.path.isfile(str(result_path+'/'+str(uniq_year[i])+"_B4_red.tif")) or (os.path.getsize(str(result_path+'/'+str(uniq_year[i])+"_B4_red.tif"))/(1<<10)) < 1:
                 ims1.append(im_coll.filterDate(startDATE,endDATE).select('B4').mean().clip(aoi))
                 fns1.append(str(result_path+'/'+str(uniq_year[i])+"_B4_red.tif"))
                 rgns1.append(region)

@@ -123,7 +123,7 @@ for ic in range(len(country_list)):
         for i in range(len(uniq_year)):
             startDATE = ee.Date(str(uniq_year[i]) + '-01-01')
             endDATE = ee.Date(str(uniq_year[i]) + '-12-31')
-            if not os.path.isfile(str(result_path+'/'+str(uniq_year[i])+"_B3_green.tif")):
+            if not os.path.isfile(str(result_path+'/'+str(uniq_year[i])+"_B3_green.tif"))  or (os.path.getsize(str(result_path+'/'+str(uniq_year[i])+"_B3_green.tif"))/(1<<10)) < 1:
                 ims1.append(im_coll.filterDate(startDATE,endDATE).select('B3').mean().clip(aoi))            
                 fns1.append(str(result_path+'/'+str(uniq_year[i])+"_B3_green.tif"))
                 rgns1.append(region)

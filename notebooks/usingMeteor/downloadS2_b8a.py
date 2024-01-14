@@ -1,4 +1,4 @@
-# %% Run the following cell to initialize the API. The output will contain instructions on how to grant this notebook access to Earth Engine using your account.
+# %% Run the following cell to initialize the API. The output will contain instructions on how to grant this notebook access to Earth Engine using your account. 
 # https://gorelick.medium.com/fast-er-downloads-a2abd512aa26
 import ee
 import multiprocessing
@@ -85,7 +85,7 @@ output_path = '/Users/joshuadimasaka/Desktop/PhD/GitHub/riskaudit/data/obsvariab
 
 country_list = os.listdir(meteor_path); country_list.sort()
 if '.DS_Store' in country_list: country_list.remove('.DS_Store')
-for ic in range(len(custom_list)): #range(2, 41): # len(country_list)):
+for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
     icountry = country_list[ic]
     ims1 = []
     fns1 = []
@@ -123,7 +123,7 @@ for ic in range(len(custom_list)): #range(2, 41): # len(country_list)):
         for i in range(len(uniq_year)):
             startDATE = ee.Date(str(uniq_year[i]) + '-01-01')
             endDATE = ee.Date(str(uniq_year[i]) + '-12-31')
-            if not os.path.isfile(str(result_path+'/'+str(uniq_year[i])+"_B8A_red4.tif")):
+            if not os.path.isfile(str(result_path+'/'+str(uniq_year[i])+"_B8A_red4.tif")) or (os.path.getsize(str(result_path+'/'+str(uniq_year[i])+"_B8A_red4.tif"))/(1<<10)) < 1:
                 ims1.append(im_coll.filterDate(startDATE,endDATE).select('B8A').mean().clip(aoi))
                 fns1.append(str(result_path+'/'+str(uniq_year[i])+"_B8A_red4.tif"))
                 rgns1.append(region)

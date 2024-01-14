@@ -1,7 +1,7 @@
 # %% Run the following cell to initialize the API. The output will contain instructions on how to grant this notebook access to Earth Engine using your account.
 # https://gorelick.medium.com/fast-er-downloads-a2abd512aa26
-import ee
-import multiprocessing
+import ee  
+import multiprocessing 
 ee.Initialize(opt_url='https://earthengine-highvolume.googleapis.com')
 import matplotlib.pyplot as plt
 import numpy as np
@@ -126,7 +126,7 @@ for ic in range(len(country_list)): #range(2, 41): # len(country_list)):
         for i in range(len(uniq_year)):
             startDATE = ee.Date(str(uniq_year[i]) + '-01-01')
             endDATE = ee.Date(str(uniq_year[i]) + '-12-31')
-            if not os.path.isfile(str(result_path+'/'+str(uniq_year[i])+"_B11_swir1.tif")):
+            if not os.path.isfile(str(result_path+'/'+str(uniq_year[i])+"_B11_swir1.tif")) or (os.path.getsize(str(result_path+'/'+str(uniq_year[i])+"_B11_swir1.tif"))/(1<<10)) < 1:
                 ims1.append(im_coll.filterDate(startDATE,endDATE).select('B11').mean().clip(aoi))
                 fns1.append(str(result_path+'/'+str(uniq_year[i])+"_B11_swir1.tif"))
                 rgns1.append(region)
